@@ -1,0 +1,388 @@
+﻿@*АВО4*@
+
+@model IEnumerable<WebAVO.Models.ParametrList>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    window.onload =
+    $(function () {
+        var ctx;
+        var srl;
+        var srd
+        var maxValue;
+        var label;
+        var e = $('.card-body canvas').each(function (e) {
+            var items = $(this).attr('id');
+
+            switch (items) {
+                case "myChartExtract": ctx = document.getElementById("myChartExtract"); srl = $('#strL').val().split(";"); srd = $('#strExtr').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartSpeed": ctx = document.getElementById("myChartSpeed"); srl = $('#strL').val().split(";"); srd = $('#strSpeed').val().split(";"); maxValue = 100; label = "М/мин"; break;
+                case "myChartILH": ctx = document.getElementById("myChartILH"); srl = $('#strL').val().split(";"); srd = $('#strILH').val().split(";"); maxValue = 5; label = "Ом"; break;
+                case "myChartILL": ctx = document.getElementById("myChartILL"); srl = $('#strL').val().split(";"); srd = $('#strILL').val().split(";"); maxValue = 5; label = "Ом"; break;
+                case "myChartIRH": ctx = document.getElementById("myChartIRH"); srl = $('#strL').val().split(";"); srd = $('#strIRH').val().split(";"); maxValue = 5; label = "Ом"; break;
+                case "myChartIRL": ctx = document.getElementById("myChartIRL"); srl = $('#strL').val().split(";"); srd = $('#strIRL').val().split(";"); maxValue = 5; label = "Ом"; break;
+                case "myChartTLH": ctx = document.getElementById("myChartTLH"); srl = $('#strL').val().split(";"); srd = $('#strTLH').val().split(";"); maxValue = 300; label = "мкм"; break;
+                case "myChartTLL": ctx = document.getElementById("myChartTLL"); srl = $('#strL').val().split(";"); srd = $('#strTLL').val().split(";"); maxValue = 300; label = "мкм"; break;
+                case "myChartTRH": ctx = document.getElementById("myChartTRH"); srl = $('#strL').val().split(";"); srd = $('#strTRH').val().split(";"); maxValue = 300; label = "мкм"; break;
+                case "myChartTRL": ctx = document.getElementById("myChartTRL"); srl = $('#strL').val().split(";"); srd = $('#strTRL').val().split(";"); maxValue = 300; label = "мкм"; break;
+                case "myChartP1750": ctx = document.getElementById("myChartP1750"); srl = $('#strL').val().split(";"); srd = $('#strP1750').val().split(";"); maxValue = 2; label = "Вт/кг"; break;
+                case "myChartB800": ctx = document.getElementById("myChartB800"); srl = $('#strL').val().split(";"); srd = $('#strB800').val().split(";"); maxValue = 2; label = "Тл"; break;
+                case "myChartTexture": ctx = document.getElementById("myChartTexture"); srl = $('#strL').val().split(";"); srd = $('#strTexture').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTehP_right": ctx = document.getElementById("myChartTehP_right"); srl = $('#strL').val().split(";"); srd = $('#strTehP_right').val().split(";"); maxValue = 1000; label = ""; break;
+                case "myChartTehP_left": ctx = document.getElementById("myChartTehP_left"); srl = $('#strL').val().split(";"); srd = $('#strTehP_left').val().split(";"); maxValue = 1000; label = ""; break;
+            }
+
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: srl,
+                    datasets: [{
+                        label: "Значение (" + label + ")",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(2,117,216,0.2)",
+                        borderColor: "rgba(2,117,216,1)",
+                        pointRadius: 1,
+                        pointBackgroundColor: "rgba(2,117,216,1)",
+                        pointBorderColor: "rgba(2,117,216,1)",
+                        pointHoverRadius: 2,
+                        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                        pointHitRadius: 20,
+                        pointBorderWidth: 5,
+                        data: srd,
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: maxValue,
+                                maxTicksLimit: 5
+                            },
+                            gridLines: {
+                                color: "rgba(2,117,216,1)",
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+
+            //console.log(items);
+        });
+    });
+</script>
+
+
+<style>
+    h3 {
+        cursor: pointer;
+    }
+
+    #fooooter {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $("h3").click(function () {
+            var item = $(this).next();
+            if (item.is(":hidden")) {
+                item.slideDown(1000);
+            }
+            else {
+                item.slideUp(1000);
+            }
+
+        });
+    });
+</script>
+
+
+<input type="hidden" value="@ViewBag.StrL" id="strL" />
+<input type="hidden" value="@ViewBag.StrExtr" id="strExtr" />
+<input type="hidden" value="@ViewBag.StrSpeed" id="strSpeed" />
+<input type="hidden" value="@ViewBag.StrILH" id="strILH" />
+<input type="hidden" value="@ViewBag.StrILL" id="strILL" />
+<input type="hidden" value="@ViewBag.StrIRH" id="strIRH" />
+<input type="hidden" value="@ViewBag.StrIRL" id="strIRL" />
+<input type="hidden" value="@ViewBag.StrTLH" id="strTLH" />
+<input type="hidden" value="@ViewBag.StrTLL" id="strTLL" />
+<input type="hidden" value="@ViewBag.StrTRH" id="strTRH" />
+<input type="hidden" value="@ViewBag.StrTRL" id="strTRL" />
+<input type="hidden" value="@ViewBag.StrP1750" id="strP1750" />
+<input type="hidden" value="@ViewBag.StrB800" id="strB800" />
+<input type="hidden" value="@ViewBag.StrTexture" id="strTexture" />
+<input type="hidden" value="@ViewBag.StrTehP_right" id="strTehP_right" />
+<input type="hidden" value="@ViewBag.StrTehP_left" id="strTehP_left" />
+
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <h3>Таблица данных</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Дата/время</th>
+                                    <th>Длина</th>
+                                    <th>Скорость</th>
+                                    <th>Вытяжка</th>
+                                    <th>Потери</th>
+                                    <th>Индукция</th>
+                                    <th>Ток ЛВ</th>
+                                    <th>Ток ЛН</th>
+                                    <th>Ток ПВ</th>
+                                    <th>Ток ПН</th>
+                                    <th>Текстура</th>
+                                    <th>Толщина ЛВ</th>
+                                    <th>Толщина ЛН</th>
+                                    <th>Толщина ПВ</th>
+                                    <th>Толщина ПН</th>
+                                    <th>Давление справа</th>
+                                    <th>Давление слева</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Дата/время</th>
+                                    <th>Длина</th>
+                                    <th>Скорость</th>
+                                    <th>Вытяжка</th>
+                                    <th>Потери</th>
+                                    <th>Индукция</th>
+                                    <th>Ток ЛВ</th>
+                                    <th>Ток ЛН</th>
+                                    <th>Ток ПВ</th>
+                                    <th>Ток ПН</th>
+                                    <th>Текстура</th>
+                                    <th>Толщина ЛВ</th>
+                                    <th>Толщина ЛН</th>
+                                    <th>Толщина ПВ</th>
+                                    <th>Толщина ПН</th>
+                                    <th>Давление справа</th>
+                                    <th>Давление слева</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="width:20%" align="left">@item.UtcDateTime</td>
+                                        <td style="width:10%" align="left">@item.Length</td>
+                                        <td style="width:15%" align="left">@item.Speed</td>
+                                        <td style="width:5%" align="left">@item.Extract</td>
+                                        <td style="width:5%" align="left">@item.P1750</td>
+                                        <td style="width:5%" align="left">@item.B800</td>
+                                        <td style="width:5%" align="left">@item.ILH</td>
+                                        <td style="width:5%" align="left">@item.ILL</td>
+                                        <td style="width:5%" align="left">@item.IRH</td>
+                                        <td style="width:5%" align="left">@item.IRL</td>
+                                        <td style="width:5%" align="left">@item.Texture</td>
+                                        <td style="width:5%" align="left">@item.TLH</td>
+                                        <td style="width:5%" align="left">@item.TLL</td>
+                                        <td style="width:5%" align="left">@item.TRH</td>
+                                        <td style="width:5%" align="left">@item.TRL</td>
+                                        <td style="width:5%" align="left">@item.TehP_right</td>
+                                        <td style="width:5%" align="left">@item.TehP_left</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <h3>Вытяжка (Мм/м)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartExtract"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Скорость (М/мин)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartSpeed"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Измеренная толщина покрытия (мкм)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>Измеренная толщина лево/верх (мкм)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartILH"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>Измеренная толщина право/верх (мкм)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartIRH"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>Измеренная толщина лево/низ (мкм)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartILL"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>Измеренная толщина право/низ (мкм)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartIRL"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <h3>Ток Франклина (Ом)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>Ток Франклина лево/верх (Ом)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTLH"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>Ток Франклина право/верх (Ом)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTRH"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>Ток Франклина лево/низ (Ом)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTLL"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>Ток Франклина право/низ (Ом)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTRL"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <h3>Потери (Вт/кг)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartP1750"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Индукция (Тл)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartB800"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Текстура</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartTexture"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Давление справа</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartTehP_right"></canvas>
+                </div>
+            </div>
+        </form>
+
+        <h3>Давление слева</h3>
+        <form class="form-horizontal" id="fooooter">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <canvas id="myChartTehP_left"></canvas>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/vendor/chart.js/Chart.js"></script>
+    <script src="~/js/sb-admin.min.js"></script>
+    <script src="~/js/sb-admin-datatables.min.js"></script>
+    <script src="~/js/sb-admin-charts.js"></script>
+
+</div>

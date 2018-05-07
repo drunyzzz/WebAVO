@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="l2dataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'l2data.dbo.sv_Web_RollProdLine' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sv_Web_RollProdLine">
+          <Key>
+            <PropertyRef Name="LocalId" />
+            <PropertyRef Name="GlobalId" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LocalId" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="GlobalId" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Length" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Thickness" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Width" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'l2data.dbo.sv_Web_TimeProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sv_Web_TimeProduction">
+          <Key>
+            <PropertyRef Name="LocalId" />
+            <PropertyRef Name="GlobalId" />
+            <PropertyRef Name="Length" />
+          </Key>
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateProduction" Type="datetime" />
+          <Property Name="LocalId" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="GlobalId" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Thickness" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Width" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Length" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="12" Scale="4" />
+        </EntityType>
+        <Function Name="sp_web_LoadDetalOTM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocalId" Type="varchar" Mode="In" />
+          <Parameter Name="NumberOTM" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_web_LoadDiagramParam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_web_RollInStend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StendNumber" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="l2dataModelStoreContainer">
+          <EntitySet Name="sv_Web_RollProdLine" EntityType="Self.sv_Web_RollProdLine" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[sv_Web_RollProdLine].[LocalId] AS [LocalId], 
+[sv_Web_RollProdLine].[GlobalId] AS [GlobalId], 
+[sv_Web_RollProdLine].[Length] AS [Length], 
+[sv_Web_RollProdLine].[Weight] AS [Weight], 
+[sv_Web_RollProdLine].[Thickness] AS [Thickness], 
+[sv_Web_RollProdLine].[Width] AS [Width], 
+[sv_Web_RollProdLine].[DateCreate] AS [DateCreate], 
+[sv_Web_RollProdLine].[Status] AS [Status], 
+[sv_Web_RollProdLine].[Id] AS [Id]
+FROM [dbo].[sv_Web_RollProdLine] AS [sv_Web_RollProdLine]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sv_Web_TimeProduction" EntityType="Self.sv_Web_TimeProduction" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[sv_Web_TimeProduction].[DateCreate] AS [DateCreate], 
+[sv_Web_TimeProduction].[DateProduction] AS [DateProduction], 
+[sv_Web_TimeProduction].[LocalId] AS [LocalId], 
+[sv_Web_TimeProduction].[GlobalId] AS [GlobalId], 
+[sv_Web_TimeProduction].[Thickness] AS [Thickness], 
+[sv_Web_TimeProduction].[Width] AS [Width], 
+[sv_Web_TimeProduction].[Length] AS [Length], 
+[sv_Web_TimeProduction].[Weight] AS [Weight]
+FROM [dbo].[sv_Web_TimeProduction] AS [sv_Web_TimeProduction]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="l2dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sv_Web_RollProdLine">
+          <Key>
+            <PropertyRef Name="LocalId" />
+            <PropertyRef Name="GlobalId" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LocalId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GlobalId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Length" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Thickness" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Width" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="l2dataAVO3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sv_Web_RollProdLine" EntityType="Self.sv_Web_RollProdLine" />
+          <FunctionImport Name="sp_web_LoadDetalOTM" ReturnType="Collection(l2dataModel.sp_web_LoadDetalOTM_Result)">
+            <Parameter Name="LocalId" Mode="In" Type="String" />
+            <Parameter Name="NumberOTM" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_web_LoadDiagramParam" ReturnType="Collection(l2dataModel.sp_web_LoadDiagramParam_Result)">
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_web_RollInStend" ReturnType="Collection(l2dataModel.sp_web_RollInStend_Result)">
+          <Parameter Name="StendNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="sv_Web_TimeProduction" EntityType="l2dataModel.sv_Web_TimeProduction" />
+        </EntityContainer>
+        <ComplexType Name="sp_web_LoadDetalOTM_Result">
+          <Property Type="String" Name="LocalId" Nullable="false" MaxLength="20" />
+          <Property Type="Int64" Name="NumberOTM" Nullable="true" />
+          <Property Type="String" Name="Defect" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="LengthOffSet" Nullable="true" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="DefectLength" Nullable="true" Precision="12" Scale="4" />
+          <Property Type="DateTime" Name="DTEvents" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DTCreateRoll" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DTProductionRoll" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_web_LoadDiagramParam_Result">
+          <Property Type="DateTime" Name="UtcDateTime" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Length" Nullable="false" />
+          <Property Type="Double" Name="Speed" Nullable="false" />
+          <Property Type="String" Name="Unit1" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="Extract" Nullable="false" />
+          <Property Type="String" Name="Unit2" Nullable="false" MaxLength="1" />
+          <Property Type="Double" Name="P1750" Nullable="false" />
+          <Property Type="String" Name="Unit3" Nullable="false" MaxLength="1" />
+          <Property Type="Double" Name="B800" Nullable="false" />
+          <Property Type="String" Name="Unit4" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="Thickness" Nullable="false" />
+          <Property Type="String" Name="Unit5" Nullable="false" MaxLength="2" />
+          <Property Type="Double" Name="ILH" Nullable="false" />
+          <Property Type="String" Name="Unit6" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="ILL" Nullable="false" />
+          <Property Type="String" Name="Unit7" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="IRH" Nullable="false" />
+          <Property Type="String" Name="Unit8" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="IRL" Nullable="false" />
+          <Property Type="String" Name="Unit9" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="Texture" Nullable="false" />
+          <Property Type="String" Name="Unit10" Nullable="false" MaxLength="1" />
+          <Property Type="Double" Name="TLH" Nullable="false" />
+          <Property Type="String" Name="Unit11" Nullable="false" MaxLength="2" />
+          <Property Type="Double" Name="TLL" Nullable="false" />
+          <Property Type="String" Name="Unit12" Nullable="false" MaxLength="2" />
+          <Property Type="Double" Name="TRH" Nullable="false" />
+          <Property Type="String" Name="Unit13" Nullable="false" MaxLength="2" />
+          <Property Type="Double" Name="TRL" Nullable="false" />
+          <Property Type="String" Name="Unit14" Nullable="false" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="sp_web_RollInStend_Result">
+          <Property Type="String" Name="NInStend" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Stend" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="LocalId" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="Length" Nullable="false" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="Weight" Nullable="true" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="Thickness" Nullable="true" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="Width" Nullable="true" Precision="12" Scale="4" />
+          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DateProduction" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="sv_Web_TimeProduction">
+          <Key>
+            <PropertyRef Name="LocalId" />
+            <PropertyRef Name="GlobalId" />
+            <PropertyRef Name="Length" />
+          </Key>
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateProduction" Type="DateTime" Precision="3" />
+          <Property Name="LocalId" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="GlobalId" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Thickness" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Width" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Length" Type="Decimal" Nullable="false" Precision="12" Scale="4" />
+          <Property Name="Weight" Type="Decimal" Precision="12" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="l2dataModelStoreContainer" CdmEntityContainer="l2dataAVO3Entities">
+          <EntitySetMapping Name="sv_Web_RollProdLine">
+            <EntityTypeMapping TypeName="l2dataModel.sv_Web_RollProdLine">
+              <MappingFragment StoreEntitySet="sv_Web_RollProdLine">
+                <ScalarProperty Name="LocalId" ColumnName="LocalId" />
+                <ScalarProperty Name="GlobalId" ColumnName="GlobalId" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_web_LoadDetalOTM" FunctionName="l2dataModel.Store.sp_web_LoadDetalOTM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2dataModel.sp_web_LoadDetalOTM_Result">
+                <ScalarProperty Name="LocalId" ColumnName="LocalId" />
+                <ScalarProperty Name="NumberOTM" ColumnName="NumberOTM" />
+                <ScalarProperty Name="Defect" ColumnName="Defect" />
+                <ScalarProperty Name="LengthOffSet" ColumnName="LengthOffSet" />
+                <ScalarProperty Name="DefectLength" ColumnName="DefectLength" />
+                <ScalarProperty Name="DTEvents" ColumnName="DTEvents" />
+                <ScalarProperty Name="DTCreateRoll" ColumnName="DTCreateRoll" />
+                <ScalarProperty Name="DTProductionRoll" ColumnName="DTProductionRoll" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_web_LoadDiagramParam" FunctionName="l2dataModel.Store.sp_web_LoadDiagramParam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2dataModel.sp_web_LoadDiagramParam_Result">
+                <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Unit1" ColumnName="Unit1" />
+                <ScalarProperty Name="Extract" ColumnName="Extract" />
+                <ScalarProperty Name="Unit2" ColumnName="Unit2" />
+                <ScalarProperty Name="P1750" ColumnName="P1750" />
+                <ScalarProperty Name="Unit3" ColumnName="Unit3" />
+                <ScalarProperty Name="B800" ColumnName="B800" />
+                <ScalarProperty Name="Unit4" ColumnName="Unit4" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Unit5" ColumnName="Unit5" />
+                <ScalarProperty Name="ILH" ColumnName="ILH" />
+                <ScalarProperty Name="Unit6" ColumnName="Unit6" />
+                <ScalarProperty Name="ILL" ColumnName="ILL" />
+                <ScalarProperty Name="Unit7" ColumnName="Unit7" />
+                <ScalarProperty Name="IRH" ColumnName="IRH" />
+                <ScalarProperty Name="Unit8" ColumnName="Unit8" />
+                <ScalarProperty Name="IRL" ColumnName="IRL" />
+                <ScalarProperty Name="Unit9" ColumnName="Unit9" />
+                <ScalarProperty Name="Texture" ColumnName="Texture" />
+                <ScalarProperty Name="Unit10" ColumnName="Unit10" />
+                <ScalarProperty Name="TLH" ColumnName="TLH" />
+                <ScalarProperty Name="Unit11" ColumnName="Unit11" />
+                <ScalarProperty Name="TLL" ColumnName="TLL" />
+                <ScalarProperty Name="Unit12" ColumnName="Unit12" />
+                <ScalarProperty Name="TRH" ColumnName="TRH" />
+                <ScalarProperty Name="Unit13" ColumnName="Unit13" />
+                <ScalarProperty Name="TRL" ColumnName="TRL" />
+                <ScalarProperty Name="Unit14" ColumnName="Unit14" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_web_RollInStend" FunctionName="l2dataModel.Store.sp_web_RollInStend">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2dataModel.sp_web_RollInStend_Result">
+                <ScalarProperty Name="NInStend" ColumnName="NInStend" />
+                <ScalarProperty Name="Stend" ColumnName="Stend" />
+                <ScalarProperty Name="LocalId" ColumnName="LocalId" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="DateProduction" ColumnName="DateProduction" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="sv_Web_TimeProduction">
+            <EntityTypeMapping TypeName="l2dataModel.sv_Web_TimeProduction">
+              <MappingFragment StoreEntitySet="sv_Web_TimeProduction">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="GlobalId" ColumnName="GlobalId" />
+                <ScalarProperty Name="LocalId" ColumnName="LocalId" />
+                <ScalarProperty Name="DateProduction" ColumnName="DateProduction" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

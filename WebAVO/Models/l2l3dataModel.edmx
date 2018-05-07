@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="l2l3interactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'l2l3interaction.dbo.DiagramToRollAVO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DiagramToRollAVO">
+          <Key>
+            <PropertyRef Name="UtcDateTime" />
+          </Key>
+          <Property Name="Agregat" Type="varchar" MaxLength="20" />
+          <Property Name="RollNumber" Type="varchar" MaxLength="20" />
+          <Property Name="StendNumber" Type="varchar" MaxLength="20" />
+          <Property Name="NInStend" Type="varchar" MaxLength="10" />
+          <Property Name="UtcDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ln" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_speed" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_extract" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_P1750" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_B800" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_ILH" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_ILL" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_IRH" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_IRL" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_texture" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TLH" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TLL" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TRH" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TRL" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TehP_righ" Type="numeric" Precision="12" Scale="4" />
+          <Property Name="p_TehP_left" Type="numeric" Precision="12" Scale="4" />
+        </EntityType>
+        <Function Name="sp_TransportDiagramsAVO3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roll" Type="varchar" Mode="In" />
+          <Parameter Name="NStend" Type="varchar" Mode="In" />
+          <Parameter Name="NInStend" Type="varchar" Mode="In" />
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_TransportDiagramsAVO4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roll" Type="varchar" Mode="In" />
+          <Parameter Name="NStend" Type="varchar" Mode="In" />
+          <Parameter Name="NInStend" Type="varchar" Mode="In" />
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_TransportDiagramsAVO5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roll" Type="varchar" Mode="In" />
+          <Parameter Name="NStend" Type="varchar" Mode="In" />
+          <Parameter Name="NInStend" Type="varchar" Mode="In" />
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO3DTEventsOTM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DTCreate" Type="datetime" Mode="In" />
+          <Parameter Name="DTProd" Type="datetime" Mode="In" />
+          <Parameter Name="LengthOffSet" Type="decimal" Mode="In" />
+          <Parameter Name="LengthDefect" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO3Parametrs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO4DTEventsOTM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DTCreate" Type="datetime" Mode="In" />
+          <Parameter Name="DTProd" Type="datetime" Mode="In" />
+          <Parameter Name="LengthOffSet" Type="decimal" Mode="In" />
+          <Parameter Name="LengthDefect" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO4Parametrs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO5DTEventsOTM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DTCreate" Type="datetime" Mode="In" />
+          <Parameter Name="DTProd" Type="datetime" Mode="In" />
+          <Parameter Name="LengthOffSet" Type="decimal" Mode="In" />
+          <Parameter Name="LengthDefect" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_LoadAVO5Parametrs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDT" Type="datetime" Mode="In" />
+          <Parameter Name="FinishDT" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_MulSKO_B800_FromRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RollNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_MulSKO_B800_FromStend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StendNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_MulSKO_P1750_FromRoll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RollNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_WebP_MulSKO_P1750_FromStend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StendNumber" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="l2l3interactionModelStoreContainer">
+          <EntitySet Name="DiagramToRollAVO" EntityType="Self.DiagramToRollAVO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[DiagramToRollAVO].[Agregat] AS [Agregat], 
+[DiagramToRollAVO].[RollNumber] AS [RollNumber], 
+[DiagramToRollAVO].[StendNumber] AS [StendNumber], 
+[DiagramToRollAVO].[NInStend] AS [NInStend], 
+[DiagramToRollAVO].[UtcDateTime] AS [UtcDateTime], 
+[DiagramToRollAVO].[ln] AS [ln], 
+[DiagramToRollAVO].[p_speed] AS [p_speed], 
+[DiagramToRollAVO].[p_extract] AS [p_extract], 
+[DiagramToRollAVO].[p_P1750] AS [p_P1750], 
+[DiagramToRollAVO].[p_B800] AS [p_B800], 
+[DiagramToRollAVO].[p_ILH] AS [p_ILH], 
+[DiagramToRollAVO].[p_ILL] AS [p_ILL], 
+[DiagramToRollAVO].[p_IRH] AS [p_IRH], 
+[DiagramToRollAVO].[p_IRL] AS [p_IRL], 
+[DiagramToRollAVO].[p_texture] AS [p_texture], 
+[DiagramToRollAVO].[p_TLH] AS [p_TLH], 
+[DiagramToRollAVO].[p_TLL] AS [p_TLL], 
+[DiagramToRollAVO].[p_TRH] AS [p_TRH], 
+[DiagramToRollAVO].[p_TRL] AS [p_TRL], 
+[DiagramToRollAVO].[p_TehP_righ] AS [p_TehP_righ], 
+[DiagramToRollAVO].[p_TehP_left] AS [p_TehP_left]
+FROM [dbo].[DiagramToRollAVO] AS [DiagramToRollAVO]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="l2l3interactionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="l2l3interactionEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="sp_WebP_LoadAVO3Parametrs" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO3Parametrs_Result)">
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_LoadAVO4Parametrs" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO4Parametrs_Result)">
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_LoadAVO5Parametrs" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO5Parametrs_Result)">
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_LoadAVO3DTEventsOTM" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO3DTEventsOTM_Result1)">
+            <Parameter Name="DTCreate" Mode="In" Type="DateTime" />
+            <Parameter Name="DTProd" Mode="In" Type="DateTime" />
+            <Parameter Name="LengthOffSet" Mode="In" Type="Decimal" />
+            <Parameter Name="LengthDefect" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_LoadAVO4DTEventsOTM" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO4DTEventsOTM_Result)">
+            <Parameter Name="DTCreate" Mode="In" Type="DateTime" />
+            <Parameter Name="DTProd" Mode="In" Type="DateTime" />
+            <Parameter Name="LengthOffSet" Mode="In" Type="Decimal" />
+            <Parameter Name="LengthDefect" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_LoadAVO5DTEventsOTM" ReturnType="Collection(l2l3interactionModel.sp_WebP_LoadAVO5DTEventsOTM_Result)">
+            <Parameter Name="DTCreate" Mode="In" Type="DateTime" />
+            <Parameter Name="DTProd" Mode="In" Type="DateTime" />
+            <Parameter Name="LengthOffSet" Mode="In" Type="Decimal" />
+            <Parameter Name="LengthDefect" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="DiagramToRollAVO" EntityType="l2l3interactionModel.DiagramToRollAVO" />
+          <FunctionImport Name="sp_TransportDiagramsAVO3">
+            <Parameter Name="Roll" Mode="In" Type="String" />
+            <Parameter Name="NStend" Mode="In" Type="String" />
+            <Parameter Name="NInStend" Mode="In" Type="String" />
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_MulSKO_B800_FromStend" ReturnType="Collection(l2l3interactionModel.sp_WebP_MulSKO_B800_FromStend_Result)">
+          <Parameter Name="StendNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_MulSKO_P1750_FromStend" ReturnType="Collection(l2l3interactionModel.sp_WebP_MulSKO_P1750_FromStend_Result)">
+          <Parameter Name="StendNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TransportDiagramsAVO4">
+            <Parameter Name="Roll" Mode="In" Type="String" />
+            <Parameter Name="NStend" Mode="In" Type="String" />
+            <Parameter Name="NInStend" Mode="In" Type="String" />
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TransportDiagramsAVO5">
+            <Parameter Name="Roll" Mode="In" Type="String" />
+            <Parameter Name="NStend" Mode="In" Type="String" />
+            <Parameter Name="NInStend" Mode="In" Type="String" />
+            <Parameter Name="StartDT" Mode="In" Type="DateTime" />
+            <Parameter Name="FinishDT" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_MulSKO_B800_FromRoll" ReturnType="Collection(l2l3interactionModel.sp_WebP_MulSKO_B800_FromRoll_Result)">
+            <Parameter Name="RollNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WebP_MulSKO_P1750_FromRoll" ReturnType="Collection(l2l3interactionModel.sp_WebP_MulSKO_P1750_FromRoll_Result)">
+            <Parameter Name="RollNumber" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_WebP_LoadAVO3Parametrs_Result">
+          <Property Type="DateTime" Name="UtcDateTime" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Length" Nullable="false" />
+          <Property Type="Double" Name="Speed" Nullable="false" />
+          <Property Type="Double" Name="Extract" Nullable="false" />
+          <Property Type="Double" Name="P1750" Nullable="false" />
+          <Property Type="Double" Name="B800" Nullable="false" />
+          <Property Type="Double" Name="ILH" Nullable="false" />
+          <Property Type="Double" Name="ILL" Nullable="false" />
+          <Property Type="Double" Name="IRH" Nullable="false" />
+          <Property Type="Double" Name="IRL" Nullable="false" />
+          <Property Type="Double" Name="Texture" Nullable="false" />
+          <Property Type="Double" Name="TLH" Nullable="false" />
+          <Property Type="Double" Name="TLL" Nullable="false" />
+          <Property Type="Double" Name="TRH" Nullable="false" />
+          <Property Type="Double" Name="TRL" Nullable="false" />
+          <Property Type="Double" Name="TehP_right" Nullable="false" />
+          <Property Type="Double" Name="TehP_left" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO4Parametrs_Result">
+          <Property Type="DateTime" Name="UtcDateTime" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Length" Nullable="false" />
+          <Property Type="Double" Name="Speed" Nullable="false" />
+          <Property Type="Double" Name="Extract" Nullable="false" />
+          <Property Type="Double" Name="P1750" Nullable="false" />
+          <Property Type="Double" Name="B800" Nullable="false" />
+          <Property Type="Double" Name="ILH" Nullable="false" />
+          <Property Type="Double" Name="ILL" Nullable="false" />
+          <Property Type="Double" Name="IRH" Nullable="false" />
+          <Property Type="Double" Name="IRL" Nullable="false" />
+          <Property Type="Double" Name="Texture" Nullable="false" />
+          <Property Type="Double" Name="TLH" Nullable="false" />
+          <Property Type="Double" Name="TLL" Nullable="false" />
+          <Property Type="Double" Name="TRH" Nullable="false" />
+          <Property Type="Double" Name="TRL" Nullable="false" />
+          <Property Type="Double" Name="TehP_right" Nullable="false" />
+          <Property Type="Double" Name="TehP_left" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO5Parametrs_Result">
+          <Property Type="DateTime" Name="UtcDateTime" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Length" Nullable="false" />
+          <Property Type="Double" Name="Speed" Nullable="false" />
+          <Property Type="Double" Name="Extract" Nullable="false" />
+          <Property Type="Double" Name="P1750" Nullable="false" />
+          <Property Type="Double" Name="B800" Nullable="false" />
+          <Property Type="Double" Name="ILH" Nullable="false" />
+          <Property Type="Double" Name="ILL" Nullable="false" />
+          <Property Type="Double" Name="IRH" Nullable="false" />
+          <Property Type="Double" Name="IRL" Nullable="false" />
+          <Property Type="Double" Name="Texture" Nullable="false" />
+          <Property Type="Double" Name="TLH" Nullable="false" />
+          <Property Type="Double" Name="TLL" Nullable="false" />
+          <Property Type="Double" Name="TRH" Nullable="false" />
+          <Property Type="Double" Name="TRL" Nullable="false" />
+          <Property Type="Double" Name="TehP_right" Nullable="false" />
+          <Property Type="Double" Name="TehP_left" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO3DTEventsOTM_Result">
+          <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Column2" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO3DTEventsOTM_Result1">
+          <Property Type="DateTime" Name="Start" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Finish" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO4DTEventsOTM_Result">
+          <Property Type="DateTime" Name="Start" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Finish" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_LoadAVO5DTEventsOTM_Result">
+          <Property Type="DateTime" Name="Start" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Finish" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="DiagramToRollAVO">
+          <Key>
+            <PropertyRef Name="UtcDateTime" />
+          </Key>
+          <Property Name="RollNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StendNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NInStend" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UtcDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ln" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_speed" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_extract" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_P1750" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_B800" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_ILH" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_ILL" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_IRH" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_IRL" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_texture" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TLH" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TLL" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TRH" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TRL" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TehP_righ" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="p_TehP_left" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Agregat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_WebP_MulSKO_B800_FromStend_Result">
+          <Property Type="Double" Name="STDEVP" Nullable="false" />
+          <Property Type="Double" Name="STDEV" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_MulSKO_P1750_FromStend_Result">
+          <Property Type="Double" Name="STDEVP" Nullable="false" />
+          <Property Type="Double" Name="STDEV" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_MulSKO_B800_FromRoll_Result">
+          <Property Type="Double" Name="STDEVP" Nullable="false" />
+          <Property Type="Double" Name="STDEV" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_WebP_MulSKO_P1750_FromRoll_Result">
+          <Property Type="Double" Name="STDEVP" Nullable="false" />
+          <Property Type="Double" Name="STDEV" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="l2l3interactionModelStoreContainer" CdmEntityContainer="l2l3interactionEntities" >
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO3Parametrs" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO3Parametrs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO3Parametrs_Result">
+                <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Extract" ColumnName="Extract" />
+                <ScalarProperty Name="P1750" ColumnName="P1750" />
+                <ScalarProperty Name="B800" ColumnName="B800" />
+                <ScalarProperty Name="ILH" ColumnName="ILH" />
+                <ScalarProperty Name="ILL" ColumnName="ILL" />
+                <ScalarProperty Name="IRH" ColumnName="IRH" />
+                <ScalarProperty Name="IRL" ColumnName="IRL" />
+                <ScalarProperty Name="Texture" ColumnName="Texture" />
+                <ScalarProperty Name="TLH" ColumnName="TLH" />
+                <ScalarProperty Name="TLL" ColumnName="TLL" />
+                <ScalarProperty Name="TRH" ColumnName="TRH" />
+                <ScalarProperty Name="TRL" ColumnName="TRL" />
+                <ScalarProperty Name="TehP_right" ColumnName="TehP_right" />
+                <ScalarProperty Name="TehP_left" ColumnName="TehP_left" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO4Parametrs" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO4Parametrs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO4Parametrs_Result">
+                <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Extract" ColumnName="Extract" />
+                <ScalarProperty Name="P1750" ColumnName="P1750" />
+                <ScalarProperty Name="B800" ColumnName="B800" />
+                <ScalarProperty Name="ILH" ColumnName="ILH" />
+                <ScalarProperty Name="ILL" ColumnName="ILL" />
+                <ScalarProperty Name="IRH" ColumnName="IRH" />
+                <ScalarProperty Name="IRL" ColumnName="IRL" />
+                <ScalarProperty Name="Texture" ColumnName="Texture" />
+                <ScalarProperty Name="TLH" ColumnName="TLH" />
+                <ScalarProperty Name="TLL" ColumnName="TLL" />
+                <ScalarProperty Name="TRH" ColumnName="TRH" />
+                <ScalarProperty Name="TRL" ColumnName="TRL" />
+                <ScalarProperty Name="TehP_right" ColumnName="TehP_right" />
+                <ScalarProperty Name="TehP_left" ColumnName="TehP_left" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO5Parametrs" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO5Parametrs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO5Parametrs_Result">
+                <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Extract" ColumnName="Extract" />
+                <ScalarProperty Name="P1750" ColumnName="P1750" />
+                <ScalarProperty Name="B800" ColumnName="B800" />
+                <ScalarProperty Name="ILH" ColumnName="ILH" />
+                <ScalarProperty Name="ILL" ColumnName="ILL" />
+                <ScalarProperty Name="IRH" ColumnName="IRH" />
+                <ScalarProperty Name="IRL" ColumnName="IRL" />
+                <ScalarProperty Name="Texture" ColumnName="Texture" />
+                <ScalarProperty Name="TLH" ColumnName="TLH" />
+                <ScalarProperty Name="TLL" ColumnName="TLL" />
+                <ScalarProperty Name="TRH" ColumnName="TRH" />
+                <ScalarProperty Name="TRL" ColumnName="TRL" />
+                <ScalarProperty Name="TehP_right" ColumnName="TehP_right" />
+                <ScalarProperty Name="TehP_left" ColumnName="TehP_left" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO3DTEventsOTM" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO3DTEventsOTM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO3DTEventsOTM_Result1">
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO4DTEventsOTM" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO4DTEventsOTM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO4DTEventsOTM_Result">
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_LoadAVO5DTEventsOTM" FunctionName="l2l3interactionModel.Store.sp_WebP_LoadAVO5DTEventsOTM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_LoadAVO5DTEventsOTM_Result">
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="DiagramToRollAVO">
+            <EntityTypeMapping TypeName="l2l3interactionModel.DiagramToRollAVO">
+              <MappingFragment StoreEntitySet="DiagramToRollAVO">
+                <ScalarProperty Name="Agregat" ColumnName="Agregat" />
+                <ScalarProperty Name="p_TehP_left" ColumnName="p_TehP_left" />
+                <ScalarProperty Name="p_TehP_righ" ColumnName="p_TehP_righ" />
+                <ScalarProperty Name="p_TRL" ColumnName="p_TRL" />
+                <ScalarProperty Name="p_TRH" ColumnName="p_TRH" />
+                <ScalarProperty Name="p_TLL" ColumnName="p_TLL" />
+                <ScalarProperty Name="p_TLH" ColumnName="p_TLH" />
+                <ScalarProperty Name="p_texture" ColumnName="p_texture" />
+                <ScalarProperty Name="p_IRL" ColumnName="p_IRL" />
+                <ScalarProperty Name="p_IRH" ColumnName="p_IRH" />
+                <ScalarProperty Name="p_ILL" ColumnName="p_ILL" />
+                <ScalarProperty Name="p_ILH" ColumnName="p_ILH" />
+                <ScalarProperty Name="p_B800" ColumnName="p_B800" />
+                <ScalarProperty Name="p_P1750" ColumnName="p_P1750" />
+                <ScalarProperty Name="p_extract" ColumnName="p_extract" />
+                <ScalarProperty Name="p_speed" ColumnName="p_speed" />
+                <ScalarProperty Name="ln" ColumnName="ln" />
+                <ScalarProperty Name="UtcDateTime" ColumnName="UtcDateTime" />
+                <ScalarProperty Name="NInStend" ColumnName="NInStend" />
+                <ScalarProperty Name="StendNumber" ColumnName="StendNumber" />
+                <ScalarProperty Name="RollNumber" ColumnName="RollNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_TransportDiagramsAVO3" FunctionName="l2l3interactionModel.Store.sp_TransportDiagramsAVO3" />
+          <FunctionImportMapping FunctionImportName="sp_WebP_MulSKO_B800_FromStend" FunctionName="l2l3interactionModel.Store.sp_WebP_MulSKO_B800_FromStend">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_MulSKO_B800_FromStend_Result">
+                <ScalarProperty Name="STDEVP" ColumnName="STDEVP" />
+                <ScalarProperty Name="STDEV" ColumnName="STDEV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_MulSKO_P1750_FromStend" FunctionName="l2l3interactionModel.Store.sp_WebP_MulSKO_P1750_FromStend">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_MulSKO_P1750_FromStend_Result">
+                <ScalarProperty Name="STDEVP" ColumnName="STDEVP" />
+                <ScalarProperty Name="STDEV" ColumnName="STDEV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_TransportDiagramsAVO4" FunctionName="l2l3interactionModel.Store.sp_TransportDiagramsAVO4" />
+          <FunctionImportMapping FunctionImportName="sp_TransportDiagramsAVO5" FunctionName="l2l3interactionModel.Store.sp_TransportDiagramsAVO5" />
+          <FunctionImportMapping FunctionImportName="sp_WebP_MulSKO_B800_FromRoll" FunctionName="l2l3interactionModel.Store.sp_WebP_MulSKO_B800_FromRoll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_MulSKO_B800_FromRoll_Result">
+                <ScalarProperty Name="STDEVP" ColumnName="STDEVP" />
+                <ScalarProperty Name="STDEV" ColumnName="STDEV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_WebP_MulSKO_P1750_FromRoll" FunctionName="l2l3interactionModel.Store.sp_WebP_MulSKO_P1750_FromRoll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="l2l3interactionModel.sp_WebP_MulSKO_P1750_FromRoll_Result">
+                <ScalarProperty Name="STDEVP" ColumnName="STDEVP" />
+                <ScalarProperty Name="STDEV" ColumnName="STDEV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

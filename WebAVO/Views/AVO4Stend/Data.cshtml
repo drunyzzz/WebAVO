@@ -1,0 +1,554 @@
+﻿@{
+    ViewBag.Title = "Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/vendor/datatables/jquery.dataTables.js"></script>
+<script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="~/vendor/chart.js/Chart.js"></script>
+<script src="~/js/sb-admin.min.js"></script>
+<script src="~/js/sb-admin-datatables.min.js"></script>
+<script src="~/js/sb-admin-charts.js"></script>
+
+<script>
+    //window.onload =
+    $(function () {
+        var ctx;
+        var srl;
+        var srd
+        var maxValue;
+        var label;
+        var e = $('.card-body canvas').each(function (e) {
+            var items = $(this).attr('id');
+
+            switch (items) {
+                case "myChartExtract_r1": ctx = document.getElementById("myChartExtract_r1"); srl = $('#strL_r1').val().split(";"); srd = $('#strExtr_r1').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartExtract_r2": ctx = document.getElementById("myChartExtract_r2"); srl = $('#strL_r2').val().split(";"); srd = $('#strExtr_r2').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartExtract_r3": ctx = document.getElementById("myChartExtract_r3"); srl = $('#strL_r3').val().split(";"); srd = $('#strExtr_r3').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartExtract_r4": ctx = document.getElementById("myChartExtract_r4"); srl = $('#strL_r4').val().split(";"); srd = $('#strExtr_r4').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartExtract_r5": ctx = document.getElementById("myChartExtract_r5"); srl = $('#strL_r5').val().split(";"); srd = $('#strExtr_r5').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+                case "myChartExtract_r6": ctx = document.getElementById("myChartExtract_r6"); srl = $('#strL_r6').val().split(";"); srd = $('#strExtr_r6').val().split(";"); maxValue = 3; label = "Мм/м"; break;
+
+                case "myChartTexture_r1": ctx = document.getElementById("myChartTexture_r1"); srl = $('#strL_r1').val().split(";"); srd = $('#strTexture_r1').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTexture_r2": ctx = document.getElementById("myChartTexture_r2"); srl = $('#strL_r2').val().split(";"); srd = $('#strTexture_r2').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTexture_r3": ctx = document.getElementById("myChartTexture_r3"); srl = $('#strL_r3').val().split(";"); srd = $('#strTexture_r3').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTexture_r4": ctx = document.getElementById("myChartTexture_r4"); srl = $('#strL_r4').val().split(";"); srd = $('#strTexture_r4').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTexture_r5": ctx = document.getElementById("myChartTexture_r5"); srl = $('#strL_r5').val().split(";"); srd = $('#strTexture_r5').val().split(";"); maxValue = 150; label = ""; break;
+                case "myChartTexture_r6": ctx = document.getElementById("myChartTexture_r6"); srl = $('#strL_r6').val().split(";"); srd = $('#strTexture_r6').val().split(";"); maxValue = 150; label = ""; break;
+
+                case "myChartP1750_r1": ctx = document.getElementById("myChartP1750_r1"); srl = $('#strL_r1').val().split(";"); srd = $('#strP1750_r1').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+                case "myChartP1750_r2": ctx = document.getElementById("myChartP1750_r2"); srl = $('#strL_r2').val().split(";"); srd = $('#strP1750_r2').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+                case "myChartP1750_r3": ctx = document.getElementById("myChartP1750_r3"); srl = $('#strL_r3').val().split(";"); srd = $('#strP1750_r3').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+                case "myChartP1750_r4": ctx = document.getElementById("myChartP1750_r4"); srl = $('#strL_r4').val().split(";"); srd = $('#strP1750_r4').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+                case "myChartP1750_r5": ctx = document.getElementById("myChartP1750_r5"); srl = $('#strL_r5').val().split(";"); srd = $('#strP1750_r5').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+                case "myChartP1750_r6": ctx = document.getElementById("myChartP1750_r6"); srl = $('#strL_r6').val().split(";"); srd = $('#strP1750_r6').val().split(";"); maxValue = 3; label = "Вт/кг"; break;
+
+                case "myChartB800_r1": ctx = document.getElementById("myChartB800_r1"); srl = $('#strL_r1').val().split(";"); srd = $('#strB800_r1').val().split(";"); maxValue = 3; label = "Тл"; break;
+                case "myChartB800_r2": ctx = document.getElementById("myChartB800_r2"); srl = $('#strL_r2').val().split(";"); srd = $('#strB800_r2').val().split(";"); maxValue = 3; label = "Тл"; break;
+                case "myChartB800_r3": ctx = document.getElementById("myChartB800_r3"); srl = $('#strL_r3').val().split(";"); srd = $('#strB800_r3').val().split(";"); maxValue = 3; label = "Тл"; break;
+                case "myChartB800_r4": ctx = document.getElementById("myChartB800_r4"); srl = $('#strL_r4').val().split(";"); srd = $('#strB800_r4').val().split(";"); maxValue = 3; label = "Тл"; break;
+                case "myChartB800_r5": ctx = document.getElementById("myChartB800_r5"); srl = $('#strL_r5').val().split(";"); srd = $('#strB800_r5').val().split(";"); maxValue = 3; label = "Тл"; break;
+                case "myChartB800_r6": ctx = document.getElementById("myChartB800_r6"); srl = $('#strL_r6').val().split(";"); srd = $('#strB800_r6').val().split(";"); maxValue = 3; label = "Тл"; break;
+
+                    //case "myChartSpeed": ctx = document.getElementById("myChartSpeed"); srl = $('#strL').val().split(";"); srd = $('#strSpeed').val().split(";"); maxValue = 100; label = "М/мин"; break;
+                    //case "myChartILH": ctx = document.getElementById("myChartILH"); srl = $('#strL').val().split(";"); srd = $('#strILH').val().split(";"); maxValue = 5; label = "Ом"; break;
+                    //case "myChartILL": ctx = document.getElementById("myChartILL"); srl = $('#strL').val().split(";"); srd = $('#strILL').val().split(";"); maxValue = 5; label = "Ом"; break;
+                    //case "myChartIRH": ctx = document.getElementById("myChartIRH"); srl = $('#strL').val().split(";"); srd = $('#strIRH').val().split(";"); maxValue = 5; label = "Ом"; break;
+                    //case "myChartIRL": ctx = document.getElementById("myChartIRL"); srl = $('#strL').val().split(";"); srd = $('#strIRL').val().split(";"); maxValue = 5; label = "Ом"; break;
+                    //case "myChartTLH": ctx = document.getElementById("myChartTLH"); srl = $('#strL').val().split(";"); srd = $('#strTLH').val().split(";"); maxValue = 300; label = "мкм"; break;
+                    //case "myChartTLL": ctx = document.getElementById("myChartTLL"); srl = $('#strL').val().split(";"); srd = $('#strTLL').val().split(";"); maxValue = 300; label = "мкм"; break;
+                    //case "myChartTRH": ctx = document.getElementById("myChartTRH"); srl = $('#strL').val().split(";"); srd = $('#strTRH').val().split(";"); maxValue = 300; label = "мкм"; break;
+                    //case "myChartTRL": ctx = document.getElementById("myChartTRL"); srl = $('#strL').val().split(";"); srd = $('#strTRL').val().split(";"); maxValue = 300; label = "мкм"; break;
+                    //case "myChartP1750": ctx = document.getElementById("myChartP1750"); srl = $('#strL').val().split(";"); srd = $('#strP1750').val().split(";"); maxValue = 2; label = "Вт/кг"; break;
+                    //case "myChartB800": ctx = document.getElementById("myChartB800"); srl = $('#strL').val().split(";"); srd = $('#strB800').val().split(";"); maxValue = 2; label = "Тл"; break;
+                    //case "myChartTexture": ctx = document.getElementById("myChartTexture"); srl = $('#strL').val().split(";"); srd = $('#strTexture').val().split(";"); maxValue = 150; label = ""; break;
+                    //case "myChartTehP_right": ctx = document.getElementById("myChartTehP_right"); srl = $('#strL').val().split(";"); srd = $('#strTehP_right').val().split(";"); maxValue = 1000; label = ""; break;
+                    //case "myChartTehP_left": ctx = document.getElementById("myChartTehP_left"); srl = $('#strL').val().split(";"); srd = $('#strTehP_left').val().split(";"); maxValue = 1000; label = ""; break;
+            }
+
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: srl,
+                    datasets: [{
+                        label: "Значение (" + label + ")",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(2,117,216,0.2)",
+                        borderColor: "rgba(2,117,216,1)",
+                        pointRadius: 0.5,
+                        pointBackgroundColor: "rgba(2,117,216,1)",
+                        pointBorderColor: "rgba(2,117,216,1)",
+                        pointHoverRadius: 1,
+                        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                        pointHitRadius: 1,
+                        pointBorderWidth: 1,
+                        data: srd,
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: maxValue,
+                                maxTicksLimit: 5
+                            },
+                            gridLines: {
+                                color: "rgba(2,117,216,1)",
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+
+            //console.log(items);
+        });
+    });
+</script>
+
+<input type="hidden" value="@ViewBag.NStend" id="NStend" />
+<input type="hidden" value="ViewBag.NSKO_P1750" id="NSKO_P1750" />
+<input type="hidden" value="ViewBag.NSKO_B800" id="NSKO_B800" />
+
+<input type="hidden" value="@ViewBag.NRoll1" id="NRoll1" />
+<input type="hidden" value="@ViewBag.NRoll2" id="NRoll2" />
+<input type="hidden" value="@ViewBag.NRoll3" id="NRoll3" />
+<input type="hidden" value="@ViewBag.NRoll4" id="NRoll4" />
+<input type="hidden" value="@ViewBag.NRoll5" id="NRoll5" />
+<input type="hidden" value="@ViewBag.NRoll6" id="NRoll6" />
+
+<input type="hidden" value="@ViewBag.DataRoll1" id="DataRoll1" />
+<input type="hidden" value="@ViewBag.DataRoll2" id="DataRoll2" />
+<input type="hidden" value="@ViewBag.DataRoll3" id="DataRoll3" />
+<input type="hidden" value="@ViewBag.DataRoll4" id="DataRoll4" />
+<input type="hidden" value="@ViewBag.DataRoll5" id="DataRoll5" />
+<input type="hidden" value="@ViewBag.DataRoll6" id="DataRoll6" />
+
+<input type="hidden" value="@ViewBag.StrL_r1" id="strL_r1" />
+<input type="hidden" value="@ViewBag.StrL_r2" id="strL_r2" />
+<input type="hidden" value="@ViewBag.StrL_r3" id="strL_r3" />
+<input type="hidden" value="@ViewBag.StrL_r4" id="strL_r4" />
+<input type="hidden" value="@ViewBag.StrL_r5" id="strL_r5" />
+<input type="hidden" value="@ViewBag.StrL_r6" id="strL_r6" />
+
+<input type="hidden" value="@ViewBag.StrExtr_r1" id="strExtr_r1" />
+<input type="hidden" value="@ViewBag.StrExtr_r2" id="strExtr_r2" />
+<input type="hidden" value="@ViewBag.StrExtr_r3" id="strExtr_r3" />
+<input type="hidden" value="@ViewBag.StrExtr_r4" id="strExtr_r4" />
+<input type="hidden" value="@ViewBag.StrExtr_r5" id="strExtr_r5" />
+<input type="hidden" value="@ViewBag.StrExtr_r6" id="strExtr_r6" />
+
+<input type="hidden" value="@ViewBag.StrTexture_r1" id="strTexture_r1" />
+<input type="hidden" value="@ViewBag.StrTexture_r2" id="strTexture_r2" />
+<input type="hidden" value="@ViewBag.StrTexture_r3" id="strTexture_r3" />
+<input type="hidden" value="@ViewBag.StrTexture_r4" id="strTexture_r4" />
+<input type="hidden" value="@ViewBag.StrTexture_r5" id="strTexture_r5" />
+<input type="hidden" value="@ViewBag.StrTexture_r6" id="strTexture_r6" />
+
+<input type="hidden" value="@ViewBag.StrP1750_r1" id="strP1750_r1" />
+<input type="hidden" value="@ViewBag.StrP1750_r2" id="strP1750_r2" />
+<input type="hidden" value="@ViewBag.StrP1750_r3" id="strP1750_r3" />
+<input type="hidden" value="@ViewBag.StrP1750_r4" id="strP1750_r4" />
+<input type="hidden" value="@ViewBag.StrP1750_r5" id="strP1750_r5" />
+<input type="hidden" value="@ViewBag.StrP1750_r6" id="strP1750_r6" />
+
+<input type="hidden" value="@ViewBag.StrB800_r1" id="strB800_r1" />
+<input type="hidden" value="@ViewBag.StrB800_r2" id="strB800_r2" />
+<input type="hidden" value="@ViewBag.StrB800_r3" id="strB800_r3" />
+<input type="hidden" value="@ViewBag.StrB800_r4" id="strB800_r4" />
+<input type="hidden" value="@ViewBag.StrB800_r5" id="strB800_r5" />
+<input type="hidden" value="@ViewBag.StrB800_r6" id="strB800_r6" />
+
+@*<input type="hidden" value="@ViewBag.StrSpeed_r1" id="strSpeed_r1" />*@
+
+
+@*<input type="hidden" value="@ViewBag.StrILH_r1" id="strILH_r1" />
+    <input type="hidden" value="@ViewBag.StrILL_r1" id="strILL_r1" />
+    <input type="hidden" value="@ViewBag.StrIRH_r1" id="strIRH_r1" />
+    <input type="hidden" value="@ViewBag.StrIRL_r1" id="strIRL_r1" />
+    <input type="hidden" value="@ViewBag.StrTLH_r1" id="strTLH_r1" />
+    <input type="hidden" value="@ViewBag.StrTLL_r1" id="strTLL_r1" />
+    <input type="hidden" value="@ViewBag.StrTRH_r1" id="strTRH_r1" />
+    <input type="hidden" value="@ViewBag.StrTRL_r1" id="strTRL_r1" />
+    <input type="hidden" value="@ViewBag.StrP1750_r1" id="strP1750_r1" />
+    <input type="hidden" value="@ViewBag.StrB800_r1" id="strB800_r1" />
+    <input type="hidden" value="@ViewBag.StrTexture_r1" id="strTexture_r1" />
+    <input type="hidden" value="@ViewBag.StrTehP_right_r1" id="strTehP_right_r1" />
+    <input type="hidden" value="@ViewBag.StrTehP_left_r1" id="strTehP_left_r1" />*@
+
+
+<style>
+    h3 {
+        cursor: pointer;
+    }
+
+    #fooooter {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $("h3").click(function () {
+            var item = $(this).next();
+            if (item.is(":hidden")) {
+                item.slideDown(1000);
+            }
+            else {
+                item.slideUp(1000);
+            }
+
+        });
+    });
+</script>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <form class="form-horizontal">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td>Агрегат</td>
+                            <td>Номер стендовой партии</td>
+                            <td>СКО магнитных потерь</td>
+                            <td>СКО магнитной индукции</td>
+                        </tr>
+                        <tr>
+                            <td><input name="Agregat" class="form-control" id="disabledInput" type="text" placeholder="Агрегат" disabled value="АВО4"></td>
+                            <td><input name="NStend" class="form-control" id="disabledInput" type="text" placeholder="Номер стенда" disabled value="@ViewBag.NStend"></td>
+                            <td><input name="SKO_P1750" class="form-control" id="disabledInput" type="text" placeholder="СКО магнитных потерь" disabled value="@ViewBag.NSKO_P1750"></td>
+                            <td><input name="SKO_B800" class="form-control" id="disabledInput" type="text" placeholder="СКО магнитной индукции" disabled value="@ViewBag.NSKO_B800"></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </form>
+
+        <form class="form-horizontal">
+            <div class="card mb-3" style="width:95%">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>1 рулон</td>
+                            <td>2 рулон</td>
+                            <td>3 рулон</td>
+                            <td>4 рулон</td>
+                            <td>5 рулон</td>
+                            <td>6 рулон</td>
+                        </tr>
+                        <tr>
+                            <td>Потери(СКО)</td>
+                            <td><input name="SKO_P1750_1" class="form-control @ViewBag.colorP1750_r1" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_1"></td>
+                            <td><input name="SKO_P1750_2" class="form-control @ViewBag.colorP1750_r2" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_2"></td>
+                            <td><input name="SKO_P1750_3" class="form-control @ViewBag.colorP1750_r3" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_3"></td>
+                            <td><input name="SKO_P1750_4" class="form-control @ViewBag.colorP1750_r4" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_4"></td>
+                            <td><input name="SKO_P1750_5" class="form-control @ViewBag.colorP1750_r5" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_5"></td>
+                            <td><input name="SKO_P1750_6" class="form-control @ViewBag.colorP1750_r6" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_P1750_6"></td>
+
+                        </tr>
+                        <tr>
+                            <td>Индукция(СКО)</td>
+                            <td><input name="SKOB800_1" class="form-control @ViewBag.colorB800_r1" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_1"></td>
+                            <td><input name="SKOB800_2" class="form-control @ViewBag.colorB800_r2" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_2"></td>
+                            <td><input name="SKOB800_3" class="form-control @ViewBag.colorB800_r3" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_3"></td>
+                            <td><input name="SKOB800_4" class="form-control @ViewBag.colorB800_r4" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_4"></td>
+                            <td><input name="SKOB800_5" class="form-control @ViewBag.colorB800_r5" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_5"></td>
+                            <td><input name="SKOB800_6" class="form-control @ViewBag.colorB800_r6" id="disabledInput" type="text" placeholder="Нет данных" disabled value="@ViewBag.SKO_B800_6"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+
+        @* *******************************************Вытяжка********************************************** *@
+        <h3>Вытяжка</h3>
+        <form class="form-horizontal" id="fooooter">
+
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>1 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll1">@ViewBag.NRoll1</a> @ViewBag.DataRoll1)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r1"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>2 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll2">@ViewBag.NRoll2</a> @ViewBag.DataRoll2)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r2"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>3 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll3">@ViewBag.NRoll3</a> @ViewBag.DataRoll3)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r3"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>4 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll4">@ViewBag.NRoll4</a> @ViewBag.DataRoll4)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r4"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>5 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll5">@ViewBag.NRoll5</a> @ViewBag.DataRoll5)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r5"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>6 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll6">@ViewBag.NRoll6</a> @ViewBag.DataRoll6)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartExtract_r6"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        @* *******************************************Конец************************************************** *@
+
+        @* *******************************************Текстура********************************************** *@
+        <h3>Тесктура</h3>
+        <form class="form-horizontal" id="fooooter">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>1 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll1">@ViewBag.NRoll1</a> @ViewBag.DataRoll1)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r1"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>2 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll2">@ViewBag.NRoll2</a> @ViewBag.DataRoll2)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r2"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>3 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll3">@ViewBag.NRoll3</a> @ViewBag.DataRoll3)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r3"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>4 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll4">@ViewBag.NRoll4</a> @ViewBag.DataRoll4)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r4"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>5 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll5">@ViewBag.NRoll5</a> @ViewBag.DataRoll5)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r5"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>6 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll6">@ViewBag.NRoll6</a> @ViewBag.DataRoll6)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartTexture_r6"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        @* *******************************************Конец************************************************** *@
+
+
+        @* *******************************************Потери************************************************* *@
+        <h3>Потери (P1750)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>1 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll1">@ViewBag.NRoll1</a> @ViewBag.DataRoll1)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r1"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>2 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll2">@ViewBag.NRoll2</a> @ViewBag.DataRoll2)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r2"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>3 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll3">@ViewBag.NRoll3</a> @ViewBag.DataRoll3)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r3"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>4 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll4">@ViewBag.NRoll4</a> @ViewBag.DataRoll4)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r4"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>5 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll5">@ViewBag.NRoll5</a> @ViewBag.DataRoll5)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r5"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>6 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll6">@ViewBag.NRoll6</a> @ViewBag.DataRoll6)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartP1750_r6"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        @* *******************************************Конец************************************************** *@
+
+        @* *******************************************Индукция*********************************************** *@
+        <h3>Индукция (B800)</h3>
+        <form class="form-horizontal" id="fooooter">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <h5>1 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll1">@ViewBag.NRoll1</a> @ViewBag.DataRoll1)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r1"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>2 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll2">@ViewBag.NRoll2</a> @ViewBag.DataRoll2)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r2"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>3 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll3">@ViewBag.NRoll3</a> @ViewBag.DataRoll3)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r3"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>4 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll4">@ViewBag.NRoll4</a> @ViewBag.DataRoll4)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r4"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h5>5 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll5">@ViewBag.NRoll5</a> @ViewBag.DataRoll5)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r5"></canvas>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <h5>6 рулон (№. рулона: <a href="~/AVO4Details/Details/@ViewBag.NRoll6">@ViewBag.NRoll6</a> @ViewBag.DataRoll6)</h5>
+                        <div class="card mb-3" style="width:95%">
+                            <div class="card-body">
+                                <canvas id="myChartB800_r6"></canvas>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        @* *******************************************Конец************************************************** *@
+
+    </div>
+</div>

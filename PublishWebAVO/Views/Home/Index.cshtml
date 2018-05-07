@@ -1,0 +1,179 @@
+﻿@model IEnumerable<WebAVO.Models.AlldataList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/vendor/jquery/jquery.js"></script>
+<script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/vendor/datatables/jquery.dataTables.js"></script>
+<script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="~/js/sb-admin.min.js"></script>
+<script src="~/js/sb-admin-datatables.min.js"></script>
+
+
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <i class="fa fa-table"></i> АВО3
+        <form class="form-horizontal">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @*<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">*@
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Номер рулона</th>
+                                    <th>Длина</th>
+                                    <th>Вес</th>
+                                    <th>Ширина</th>
+                                    <th>Толщина</th>
+                                    <th>Начало обработки</th>
+                                    <th>Статус обработки</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Номер рулона</th>
+                                    <th>Длина</th>
+                                    <th>Вес</th>
+                                    <th>Ширина</th>
+                                    <th>Толщина</th>
+                                    <th>Начало обработки</th>
+                                    <th>Статус обработки</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="width:20%" align="left"><a href="~/AVO3Details/Details/@item.AVO3_NumberLocalRoll.Replace("/", "-")">@item.AVO3_NumberRoll</td>
+                                        <td style="width:10%" align="left">@item.AVO3_LengthRoll</td>
+                                        <td style="width:10%" align="left">@item.AVO3_WeightRoll</td>
+                                        <td style="width:10%" align="left">@item.AVO3_WidthRoll</td>
+                                        <td style="width:10%" align="left">@item.AVO3_ThicknessRoll</td>
+                                        <td style="width:15%" align="left">@item.AVO3_DateCreate</td>
+                                        <td style="width:25%" align="left">@item.AVO3_Status</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <input id="AVO3AllData" type="button" value="Остальные рулоны" onclick="location.href = 'AVO3AllData/AllData/'" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> АВО4
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Номер рулона</th>
+                                <th>Длина</th>
+                                <th>Вес</th>
+                                <th>Ширина</th>
+                                <th>Толщина</th>
+                                <th>Начало обработки</th>
+                                <th>Статус обработки</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Номер рулона</th>
+                                <th>Длина</th>
+                                <th>Вес</th>
+                                <th>Ширина</th>
+                                <th>Толщина</th>
+                                <th>Начало обработки</th>
+                                <th>Статус обработки</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="width:20%" align="left"><a href="~/AVO4Details/Details/@item.AVO4_NumberLocalRoll">@item.AVO4_NumberRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO4_LengthRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO4_WeightRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO4_WidthRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO4_ThicknessRoll</td>
+                                    <td style="width:15%" align="left">@item.AVO4_DateCreate</td>
+                                    <td style="width:25%" align="left">@item.AVO4_Status</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input id="AVO4AllData" type="button" value="Остальные рулоны" onclick="location.href = 'AVO4AllData/AllData/'" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> АВО5
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Номер рулона</th>
+                                <th>Длина</th>
+                                <th>Вес</th>
+                                <th>Ширина</th>
+                                <th>Толщина</th>
+                                <th>Начало обработки</th>
+                                <th>Статус обработки</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Номер рулона</th>
+                                <th>Длина</th>
+                                <th>Вес</th>
+                                <th>Ширина</th>
+                                <th>Толщина</th>
+                                <th>Начало обработки</th>
+                                <th>Статус обработки</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="width:20%" align="left"><a href="~/AVO5Details/Details/@item.AVO5_NumberLocalRoll">@item.AVO5_NumberRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO5_LengthRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO5_WeightRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO5_WidthRoll</td>
+                                    <td style="width:10%" align="left">@item.AVO5_ThicknessRoll</td>
+                                    <td style="width:15%" align="left">@item.AVO5_DateCreate</td>
+                                    <td style="width:25%" align="left">@item.AVO5_Status</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input id="AVO5AllData" type="button" value="Остальные рулоны" onclick="location.href = 'AVO5AllData/AllData/'" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
